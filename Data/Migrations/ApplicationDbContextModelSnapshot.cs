@@ -234,6 +234,29 @@ namespace Web_Prog_Proje.Data.Migrations
                     b.ToTable("Dil");
                 });
 
+            modelBuilder.Entity("Web_Prog_Proje.Models.Karakter", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Ad")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Soyad")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UlkeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UlkeId");
+
+                    b.ToTable("Karakter");
+                });
+
             modelBuilder.Entity("Web_Prog_Proje.Models.Kategori", b =>
                 {
                     b.Property<int>("Id")
@@ -284,6 +307,91 @@ namespace Web_Prog_Proje.Data.Migrations
                     b.HasIndex("KategoriId");
 
                     b.ToTable("Kitap");
+                });
+
+            modelBuilder.Entity("Web_Prog_Proje.Models.KitapKarakter", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("KarakterId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("KitapId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Sira")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("KarakterId");
+
+                    b.HasIndex("KitapId");
+
+                    b.ToTable("KitapKarakter");
+                });
+
+            modelBuilder.Entity("Web_Prog_Proje.Models.KitapYazar", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("KitapId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("YazarId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("KitapId");
+
+                    b.HasIndex("YazarId");
+
+                    b.ToTable("KitapYazar");
+                });
+
+            modelBuilder.Entity("Web_Prog_Proje.Models.Ulke", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("UlkeAd")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Ulke");
+                });
+
+            modelBuilder.Entity("Web_Prog_Proje.Models.Yazar", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Ad")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Soyad")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UlkeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UlkeId");
+
+                    b.ToTable("Yazar");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -337,6 +445,15 @@ namespace Web_Prog_Proje.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Web_Prog_Proje.Models.Karakter", b =>
+                {
+                    b.HasOne("Web_Prog_Proje.Models.Ulke", "Ulke")
+                        .WithMany()
+                        .HasForeignKey("UlkeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Web_Prog_Proje.Models.Kitap", b =>
                 {
                     b.HasOne("Web_Prog_Proje.Models.Dil", "Dil")
@@ -348,6 +465,45 @@ namespace Web_Prog_Proje.Data.Migrations
                     b.HasOne("Web_Prog_Proje.Models.Kategori", "Kategori")
                         .WithMany()
                         .HasForeignKey("KategoriId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Web_Prog_Proje.Models.KitapKarakter", b =>
+                {
+                    b.HasOne("Web_Prog_Proje.Models.Karakter", "Karakter")
+                        .WithMany()
+                        .HasForeignKey("KarakterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Web_Prog_Proje.Models.Kitap", "Kitap")
+                        .WithMany()
+                        .HasForeignKey("KitapId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Web_Prog_Proje.Models.KitapYazar", b =>
+                {
+                    b.HasOne("Web_Prog_Proje.Models.Kitap", "Kitap")
+                        .WithMany()
+                        .HasForeignKey("KitapId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Web_Prog_Proje.Models.Yazar", "Yazar")
+                        .WithMany()
+                        .HasForeignKey("YazarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Web_Prog_Proje.Models.Yazar", b =>
+                {
+                    b.HasOne("Web_Prog_Proje.Models.Ulke", "Ulke")
+                        .WithMany()
+                        .HasForeignKey("UlkeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
