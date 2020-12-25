@@ -16,10 +16,10 @@ namespace Web_Prog_Proje.Models
         public string Konu { get; set; }
         public string Resim { get; set; }
 
-        public int KategoriId { get; set; }
+        public int? KategoriId { get; set; }
         public Kategori Kategori { get; set; }
 
-        public int DilId { get; set; }
+        public int? DilId { get; set; }
         public Dil Dil { get; set; }
     }
 }

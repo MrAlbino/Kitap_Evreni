@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Web_Prog_Proje.Data;
 
 namespace Web_Prog_Proje.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201224205528_TemelTablolar")]
+    partial class TemelTablolar
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -247,7 +249,7 @@ namespace Web_Prog_Proje.Data.Migrations
                     b.Property<string>("Soyad")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UlkeId")
+                    b.Property<int>("UlkeId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -282,10 +284,10 @@ namespace Web_Prog_Proje.Data.Migrations
                     b.Property<int?>("BasimYili")
                         .HasColumnType("int");
 
-                    b.Property<int?>("DilId")
+                    b.Property<int>("DilId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("KategoriId")
+                    b.Property<int>("KategoriId")
                         .HasColumnType("int");
 
                     b.Property<string>("KitapAd")
@@ -347,9 +349,6 @@ namespace Web_Prog_Proje.Data.Migrations
                     b.Property<int>("YazarId")
                         .HasColumnType("int");
 
-                    b.Property<string>("YazarTip")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("KitapId");
@@ -387,7 +386,7 @@ namespace Web_Prog_Proje.Data.Migrations
                     b.Property<string>("Soyad")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UlkeId")
+                    b.Property<int>("UlkeId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -452,18 +451,24 @@ namespace Web_Prog_Proje.Data.Migrations
                 {
                     b.HasOne("Web_Prog_Proje.Models.Ulke", "Ulke")
                         .WithMany()
-                        .HasForeignKey("UlkeId");
+                        .HasForeignKey("UlkeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Web_Prog_Proje.Models.Kitap", b =>
                 {
                     b.HasOne("Web_Prog_Proje.Models.Dil", "Dil")
                         .WithMany()
-                        .HasForeignKey("DilId");
+                        .HasForeignKey("DilId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Web_Prog_Proje.Models.Kategori", "Kategori")
                         .WithMany()
-                        .HasForeignKey("KategoriId");
+                        .HasForeignKey("KategoriId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Web_Prog_Proje.Models.KitapKarakter", b =>
@@ -500,7 +505,9 @@ namespace Web_Prog_Proje.Data.Migrations
                 {
                     b.HasOne("Web_Prog_Proje.Models.Ulke", "Ulke")
                         .WithMany()
-                        .HasForeignKey("UlkeId");
+                        .HasForeignKey("UlkeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

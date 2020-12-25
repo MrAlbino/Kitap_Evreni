@@ -11,7 +11,7 @@ namespace Web_Prog_Proje.Models
         public string Ad { get; set; }
         public string Soyad { get; set; }
 
-        public int UlkeId { get; set; }
+        public int? UlkeId { get; set; }
         public Ulke Ulke { get; set; }
     }
 }

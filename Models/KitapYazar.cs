@@ -12,5 +12,6 @@ namespace Web_Prog_Proje.Models
         public Kitap Kitap { get; set; }
         public int YazarId { get; set; }
         public Yazar Yazar { get; set; }
+        public string YazarTip { get; set; }
     }
 }
