@@ -1,0 +1,36 @@
+﻿@model Web_Prog_Proje.Models.KitapYazar
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>KitapYazar</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Kitap)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Kitap.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Yazar)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Yazar.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.YazarTip)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.YazarTip)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
