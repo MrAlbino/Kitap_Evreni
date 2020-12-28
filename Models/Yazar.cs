@@ -13,5 +13,7 @@ namespace Web_Prog_Proje.Models
 
         public int? UlkeId { get; set; }
         public Ulke Ulke { get; set; }
+        public string AdSoyad { get { return Ad + " " + Soyad; } }
+
     }
 }
