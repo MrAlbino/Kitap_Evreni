@@ -25,7 +25,11 @@ namespace Web_Prog_Proje.Controllers
             var applicationDbContext = _context.Kitap.Include(k => k.Dil).Include(k => k.Kategori);
             return View(await applicationDbContext.ToListAsync());
         }
-
+        public async Task<IActionResult> Index1()
+        {
+            var applicationDbContext = _context.Kitap.Include(k => k.Dil).Include(k => k.Kategori);
+            return View(await applicationDbContext.ToListAsync());
+        }
         // GET: Kitap/Details/5
         public async Task<IActionResult> Details(int? id)
         {
