@@ -15,6 +15,7 @@ namespace Web_Prog_Proje.Models
         public int? BasimYili { get; set; }
         public string Konu { get; set; }
         public string Resim { get; set; }
+        public string ArkaplanResim { get; set; }
 
         public int? KategoriId { get; set; }
         public Kategori Kategori { get; set; }

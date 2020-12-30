@@ -38,12 +38,17 @@
                 <span asp-validation-for="Resim" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="ArkaplanResim" class="control-label">Arkaplan Resmi</label>
+                <input asp-for="ArkaplanResim" class="form-control" />
+                <span asp-validation-for="ArkaplanResim" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label class="control-label">Kategori</label>
-                <select asp-for="KategoriId" class ="form-control" asp-items="ViewBag.KategoriId"></select>
+                <select asp-for="KategoriId" class="form-control" asp-items="ViewBag.KategoriId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="DilId" class="control-label">Dil</label>
-                <select asp-for="DilId" class ="form-control" asp-items="ViewBag.DilId"></select>
+                <select asp-for="DilId" class="form-control" asp-items="ViewBag.DilId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

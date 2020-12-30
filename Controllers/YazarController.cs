@@ -48,7 +48,7 @@ namespace Web_Prog_Proje.Controllers
         // GET: Yazar/Create
         public IActionResult Create()
         {
-            ViewData["UlkeId"] = new SelectList(_context.Ulke, "Id", "Id");
+            ViewData["UlkeId"] = new SelectList(_context.Ulke, "Id", "UlkeAd");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace Web_Prog_Proje.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UlkeId"] = new SelectList(_context.Ulke, "Id", "Id", yazar.UlkeId);
+            ViewData["UlkeId"] = new SelectList(_context.Ulke, "Id", "UlkeAd", yazar.UlkeId);
             return View(yazar);
         }
 
@@ -82,7 +82,7 @@ namespace Web_Prog_Proje.Controllers
             {
                 return NotFound();
             }
-            ViewData["UlkeId"] = new SelectList(_context.Ulke, "Id", "Id", yazar.UlkeId);
+            ViewData["UlkeId"] = new SelectList(_context.Ulke, "Id", "UlkeAd", yazar.UlkeId);
             return View(yazar);
         }
 
@@ -118,7 +118,7 @@ namespace Web_Prog_Proje.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UlkeId"] = new SelectList(_context.Ulke, "Id", "Id", yazar.UlkeId);
+            ViewData["UlkeId"] = new SelectList(_context.Ulke, "Id", "UlkeAd", yazar.UlkeId);
             return View(yazar);
         }
 

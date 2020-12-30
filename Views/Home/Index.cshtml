@@ -5,27 +5,24 @@
 
 <div class="container mt-4">
     <div class="row align-items-center">
-        <div class="col-sm">
-            <div class="card h-100">
-                <h4 class="card-header bg-primary">Card Title</h4>
-                <div class="card-body">
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-                </div>
-                <div class="card-footer">
-                    <a href="#" class="btn btn-primary bg-info">Learn More</a>
-                </div>
-            </div>
-        </div>
+
         <div class="col-sm">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     @foreach (var item in Model)
                     {
                         <div class="@(item.Id==1?"carousel-item active":"carousel-item")">
-                            <img src="@(item.Resim)" class="d-block w-100 h-100 align-content-center" />
+                            <img src="@(item.ArkaplanResim)" class="d-block w-100 h-100 align-content-center" />
                         </div>
-                    }
 
+                    }
+                    @* @foreach (var item in Model)
+        {
+            <div class="@(item.Id==1?"carousel-item active":"carousel-item")">
+                <p class="position-absolute">@item.KitapAd</p>
+
+            </div>
+        }*@
                 </div>
 
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -38,18 +35,7 @@
                 </a>
             </div>
         </div>
-        <div class="col-sm">
-            <div class="card h-100">
-                <h4 class="card-header bg-primary">Card Title</h4>
-                <div class="card-body">
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-                </div>
-                <div class="card-footer">
-                    <a href="#" class="btn btn-primary bg-info">Learn More</a>
-                </div>
-            </div>
-        </div>
-
+        
     </div>
 
 </div>

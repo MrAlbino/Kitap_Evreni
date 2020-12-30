@@ -99,7 +99,7 @@ namespace Web_Prog_Proje.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,KitapAd,SayfaSayisi,BasimYili,Konu,Resim,KategoriId,DilId")] Kitap kitap)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,KitapAd,SayfaSayisi,BasimYili,Konu,Resim,KategoriId,DilId,ArkaplanResim")] Kitap kitap)
         {
             if (id != kitap.Id)
             {
