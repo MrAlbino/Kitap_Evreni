@@ -9,13 +9,18 @@
 <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">
-        Kitaplar
-    </h1>
+
+    <div class="col d-flex justify-content-center">
+        <div class="card mt-4 bg-warning">
+            <div class="card-body">
+                <h3 class="font-weight-bold text-center">Kitaplar</h3>
+            </div>
+        </div>
+    </div>
     @foreach (var item in Model)
     {
         <!-- Blog Post -->
-        <div class="card mb-4">
+        <div class="card mt-4">
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-6 w-75 h-75">
@@ -23,15 +28,14 @@
                             <img class="rounded img-fluid w-50 h-50" src="@item.Resim" alt="">
                         </a>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 d-flex flex-column">
                         <h2 class="card-title font-weight-bold">@item.KitapAd</h2>
                         <p class="card-text">@item.Konu</p>
                         <p class="card-text">Sayfa Sayısı: @item.SayfaSayisi</p>
                         <p class="card-text">Dil: @item.Dil.DilId</p>
                         <p class="card-text">Basım Yılı: @item.BasimYili</p>
                         <p class="card-text">Kategori: @item.Kategori.KategoriAd</p>
-
-                        <a href="#" class="btn btn-primary bg-info">İncele &rarr;</a>
+                        <a href="#" class="btn btn-primary bg-info mt-auto ml-auto">İncele &rarr;</a>
                     </div>
                 </div>
             </div>
@@ -41,4 +45,4 @@
             </div>
         </div>
     }
-    </div>
+</div>

@@ -7,7 +7,7 @@ using Web_Prog_Proje.Models;
 
 namespace Web_Prog_Proje.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<Kullanici>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
