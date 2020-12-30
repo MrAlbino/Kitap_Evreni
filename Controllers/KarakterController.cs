@@ -82,7 +82,7 @@ namespace Web_Prog_Proje.Controllers
             {
                 return NotFound();
             }
-            ViewData["UlkeId"] = new SelectList(_context.Ulke, "Id", "Id", karakter.UlkeId);
+            ViewData["UlkeId"] = new SelectList(_context.Ulke, "Id", "UlkeAd", karakter.UlkeId);
             return View(karakter);
         }
 
@@ -118,7 +118,7 @@ namespace Web_Prog_Proje.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UlkeId"] = new SelectList(_context.Ulke, "Id", "Id", karakter.UlkeId);
+            ViewData["UlkeId"] = new SelectList(_context.Ulke, "Id", "UlkeAd", karakter.UlkeId);
             return View(karakter);
         }
 

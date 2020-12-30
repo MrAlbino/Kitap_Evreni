@@ -89,8 +89,8 @@ namespace Web_Prog_Proje.Controllers
             {
                 return NotFound();
             }
-            ViewData["DilId"] = new SelectList(_context.Dil, "Id", "Id", kitap.DilId);
-            ViewData["KategoriId"] = new SelectList(_context.Kategori, "Id", "Id", kitap.KategoriId);
+            ViewData["DilId"] = new SelectList(_context.Dil, "Id", "DilId", kitap.DilId);
+            ViewData["KategoriId"] = new SelectList(_context.Kategori, "Id", "KategoriAd", kitap.KategoriId);
             return View(kitap);
         }
 
@@ -126,8 +126,8 @@ namespace Web_Prog_Proje.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DilId"] = new SelectList(_context.Dil, "Id", "Id", kitap.DilId);
-            ViewData["KategoriId"] = new SelectList(_context.Kategori, "Id", "Id", kitap.KategoriId);
+            ViewData["DilId"] = new SelectList(_context.Dil, "Id", "DilId", kitap.DilId);
+            ViewData["KategoriId"] = new SelectList(_context.Kategori, "Id", "KategoriAd", kitap.KategoriId);
             return View(kitap);
         }
 
