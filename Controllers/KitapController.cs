@@ -53,8 +53,8 @@ namespace Web_Prog_Proje.Controllers
         // GET: Kitap/Create
         public IActionResult Create()
         {
-            ViewData["DilId"] = new SelectList(_context.Dil, "Id", "Id");
-            ViewData["KategoriId"] = new SelectList(_context.Kategori, "Id", "Id");
+            ViewData["DilId"] = new SelectList(_context.Dil, "Id", "DilId");
+            ViewData["KategoriId"] = new SelectList(_context.Kategori, "Id", "KategoriAd");
             return View();
         }
 
@@ -71,8 +71,8 @@ namespace Web_Prog_Proje.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DilId"] = new SelectList(_context.Dil, "Id", "Id", kitap.DilId);
-            ViewData["KategoriId"] = new SelectList(_context.Kategori, "Id", "Id", kitap.KategoriId);
+            ViewData["DilId"] = new SelectList(_context.Dil, "Id", "DilId", kitap.DilId);
+            ViewData["KategoriId"] = new SelectList(_context.Kategori, "Id", "KategoriAd", kitap.KategoriId);
             return View(kitap);
         }
 

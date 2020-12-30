@@ -48,7 +48,7 @@ namespace Web_Prog_Proje.Controllers
         // GET: Karakter/Create
         public IActionResult Create()
         {
-            ViewData["UlkeId"] = new SelectList(_context.Ulke, "Id", "Id");
+            ViewData["UlkeId"] = new SelectList(_context.Ulke, "Id", "UlkeAd");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace Web_Prog_Proje.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UlkeId"] = new SelectList(_context.Ulke, "Id", "Id", karakter.UlkeId);
+            ViewData["UlkeId"] = new SelectList(_context.Ulke, "Id", "UlkeAd", karakter.UlkeId);
             return View(karakter);
         }
 

@@ -47,9 +47,6 @@ namespace Web_Prog_Proje.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            [Display(Name = "Role")]
-            public string Role { get; set; }
-            [Required]
             [Display(Name ="Ad")]
             public string Ad { get; set; }
             [Required]
@@ -86,7 +83,7 @@ namespace Web_Prog_Proje.Areas.Identity.Pages.Account
             {
                 var user = new Kullanici { UserName = Input.Email, Email = Input.Email,Ad=Input.Ad,Soyad=Input.Soyad };
                 var result = await _userManager.CreateAsync(user, Input.Password);
-                var addRoleToUser = await _userManager.AddToRoleAsync(user,Input.Role);
+                var addRoleToUser = await _userManager.AddToRoleAsync(user,"User");
                 if (result.Succeeded && addRoleToUser.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
