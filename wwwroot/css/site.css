@@ -69,3 +69,14 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+.shadow-emre {
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.7) !important;
+}
+.shadow-ayberk {
+    transition: all .5s; /* Animation */
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.3) !important;
+}
+.card:hover {
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 1.2) !important;
+    transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
