@@ -42,8 +42,8 @@ namespace Web_Prog_Proje.Controllers
                 .Include(k => k.Dil)
                 .Include(k => k.Kategori)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            ViewData["Kategori"] = _context.Kategori.Where(i => i.Id == kitap.KategoriId).Select(p=>p.KategoriAd).FirstOrDefault();
-            ViewData["Dil"] = _context.Dil.Where(i => i.Id == kitap.DilId).Select(p=>p.DilId).FirstOrDefault();
+            //ViewData["Kategori"] = _context.Kategori.Where(i => i.Id == kitap.KategoriId).Select(p=>p.KategoriAd).FirstOrDefault();
+            //ViewData["Dil"] = _context.Dil.Where(i => i.Id == kitap.DilId).Select(p=>p.DilId).FirstOrDefault();
             if (kitap == null)
             {
                 return NotFound();
