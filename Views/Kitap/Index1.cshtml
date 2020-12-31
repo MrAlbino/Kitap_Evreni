@@ -36,7 +36,7 @@
                         <p class="card-text">Dil: @item.Dil.DilId</p>
                         <p class="card-text">Basım Yılı: @item.BasimYili</p>
                         <p class="card-text">Kategori: @item.Kategori.KategoriAd</p>
-                        <a href="#" class="btn btn-primary bg-info mt-auto ml-auto">İncele &rarr;</a>
+                        <a asp-controller="Kitap" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary bg-info mt-auto ml-auto">İncele &rarr;</a>
                     </div>
                 </div>
             </div>
