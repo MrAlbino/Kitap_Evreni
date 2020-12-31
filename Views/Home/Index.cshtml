@@ -11,10 +11,13 @@
                 <div class="carousel-inner">
                     @foreach (var item in Model)
                     {
-                        <div class="@(item.Id==1?"carousel-item active":"carousel-item")">
-                            <img src="@(item.ArkaplanResim)" class="d-block w-100 h-100 align-content-center" />
+                    <div class="@(item.Id==1?"carousel-item active":"carousel-item")">
+                        <img src="@(item.ArkaplanResim)" class="d-block w-100 h-100 align-content-center" />
+                        <div class="carousel-caption">
+                            <h2>@item.KitapAd</h2>
                         </div>
-
+                    </div>
+                        
                     }
                     @* @foreach (var item in Model)
         {
