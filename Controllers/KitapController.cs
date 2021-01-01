@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Web_Prog_Proje.Data;
 using Web_Prog_Proje.Models;
 using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.AspNetCore.Authorization;
+
 namespace Web_Prog_Proje.Controllers
 {
     public class KitapController : Controller
@@ -19,6 +21,7 @@ namespace Web_Prog_Proje.Controllers
         }
 
         // GET: Kitap
+        [Authorize(Roles ="Admin")]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Kitap.Include(k => k.Dil).Include(k => k.Kategori);
@@ -110,6 +113,7 @@ namespace Web_Prog_Proje.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> Edit(int id, [Bind("Id,KitapAd,SayfaSayisi,BasimYili,Konu,Resim,KategoriId,DilId,ArkaplanResim")] Kitap kitap)
         {
             if (id != kitap.Id)

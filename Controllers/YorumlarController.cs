@@ -11,24 +11,24 @@ using Web_Prog_Proje.Models;
 
 namespace Web_Prog_Proje.Controllers
 {
-    public class KarakterController : Controller
+    [Authorize(Roles = "Admin")]
+    public class YorumlarController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public KarakterController(ApplicationDbContext context)
+        public YorumlarController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Karakter
-        [Authorize(Roles = "Admin")]
+        // GET: Yorumlar
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Karakter.Include(k => k.Ulke);
+            var applicationDbContext = _context.Yorumlar.Include(y => y.Kitap);
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Karakter/Details/5
+        // GET: Yorumlar/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -36,42 +36,42 @@ namespace Web_Prog_Proje.Controllers
                 return NotFound();
             }
 
-            var karakter = await _context.Karakter
-                .Include(k => k.Ulke)
+            var yorumlar = await _context.Yorumlar
+                .Include(y => y.Kitap)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (karakter == null)
+            if (yorumlar == null)
             {
                 return NotFound();
             }
 
-            return View(karakter);
+            return View(yorumlar);
         }
 
-        // GET: Karakter/Create
+        // GET: Yorumlar/Create
         public IActionResult Create()
         {
-            ViewData["UlkeId"] = new SelectList(_context.Ulke, "Id", "UlkeAd");
+            ViewData["KitapId"] = new SelectList(_context.Kitap, "Id", "KitapAd");
             return View();
         }
 
-        // POST: Karakter/Create
+        // POST: Yorumlar/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Ad,Soyad,UlkeId")] Karakter karakter)
+        public async Task<IActionResult> Create([Bind("Id,Ad,Soyad,Mail,Yorum,KitapId")] Yorumlar yorumlar)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(karakter);
+                _context.Add(yorumlar);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UlkeId"] = new SelectList(_context.Ulke, "Id", "UlkeAd", karakter.UlkeId);
-            return View(karakter);
+            ViewData["KitapId"] = new SelectList(_context.Kitap, "Id", "KitapAd", yorumlar.KitapId);
+            return View(yorumlar);
         }
 
-        // GET: Karakter/Edit/5
+        // GET: Yorumlar/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -79,23 +79,23 @@ namespace Web_Prog_Proje.Controllers
                 return NotFound();
             }
 
-            var karakter = await _context.Karakter.FindAsync(id);
-            if (karakter == null)
+            var yorumlar = await _context.Yorumlar.FindAsync(id);
+            if (yorumlar == null)
             {
                 return NotFound();
             }
-            ViewData["UlkeId"] = new SelectList(_context.Ulke, "Id", "UlkeAd", karakter.UlkeId);
-            return View(karakter);
+            ViewData["KitapId"] = new SelectList(_context.Kitap, "Id", "KitapAd", yorumlar.KitapId);
+            return View(yorumlar);
         }
 
-        // POST: Karakter/Edit/5
+        // POST: Yorumlar/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Ad,Soyad,UlkeId")] Karakter karakter)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Ad,Soyad,Mail,Yorum,KitapId")] Yorumlar yorumlar)
         {
-            if (id != karakter.Id)
+            if (id != yorumlar.Id)
             {
                 return NotFound();
             }
@@ -104,12 +104,12 @@ namespace Web_Prog_Proje.Controllers
             {
                 try
                 {
-                    _context.Update(karakter);
+                    _context.Update(yorumlar);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!KarakterExists(karakter.Id))
+                    if (!YorumlarExists(yorumlar.Id))
                     {
                         return NotFound();
                     }
@@ -120,11 +120,11 @@ namespace Web_Prog_Proje.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UlkeId"] = new SelectList(_context.Ulke, "Id", "UlkeAd", karakter.UlkeId);
-            return View(karakter);
+            ViewData["KitapId"] = new SelectList(_context.Kitap, "Id", "KitapAd", yorumlar.KitapId);
+            return View(yorumlar);
         }
 
-        // GET: Karakter/Delete/5
+        // GET: Yorumlar/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -132,31 +132,31 @@ namespace Web_Prog_Proje.Controllers
                 return NotFound();
             }
 
-            var karakter = await _context.Karakter
-                .Include(k => k.Ulke)
+            var yorumlar = await _context.Yorumlar
+                .Include(y => y.Kitap)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (karakter == null)
+            if (yorumlar == null)
             {
                 return NotFound();
             }
 
-            return View(karakter);
+            return View(yorumlar);
         }
 
-        // POST: Karakter/Delete/5
+        // POST: Yorumlar/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var karakter = await _context.Karakter.FindAsync(id);
-            _context.Karakter.Remove(karakter);
+            var yorumlar = await _context.Yorumlar.FindAsync(id);
+            _context.Yorumlar.Remove(yorumlar);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool KarakterExists(int id)
+        private bool YorumlarExists(int id)
         {
-            return _context.Karakter.Any(e => e.Id == id);
+            return _context.Yorumlar.Any(e => e.Id == id);
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using Web_Prog_Proje.Models;
 
 namespace Web_Prog_Proje.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class KategoriController : Controller
     {
         private readonly ApplicationDbContext _context;
