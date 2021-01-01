@@ -68,14 +68,37 @@
         </dl>
     </div>
 </div>
-
+<h3>Yorumlar</h3>
+@if (Model.yorum.Count() == 0)
+{
+    <div>
+        Hiç Yorum Yapılmamış.
+    </div>
+}
 @foreach (var item in Model.yorum)
 {
     <div>
         <ul class="comment-list">
             <li>
-                <div>
-                    <p>@item.Ad @item.Soyad: @item.Yorum</p>
+                <div class="row">
+                    <div class="col-10">
+                        <p>@item.Ad @item.Soyad: @item.Yorum</p>
+
+                    </div>
+                    <div class="col-2">
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            var giris_yapan_kullanici = await UserManager.GetUserAsync(User);
+                            var kullanici_rol = await UserManager.GetRolesAsync(giris_yapan_kullanici);
+                            if (kullanici_rol.FirstOrDefault().Equals("Admin"))
+                            {
+                                <a asp-controller="Yorumlar" asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-trash-o"></i></a>
+                            }
+
+                        }
+                    </div>
+                    
+
                 </div>
             </li>
 
@@ -101,7 +124,7 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label">Mesaj</label>
-                    <input name="Yorum" class="form-control" />
+                    <input name="Yorum" class="form-control" placeholder="Mesajınızı Yazın."/>
                 </div>
                 <div class="form-group">
                     <input name="KitapId" class="form-control" value="@Model.kitap.Id" type="hidden" />
@@ -123,5 +146,12 @@
     <a asp-action="Index" asp-controller="Yorumlar">Yorumları Düzenle</a>
 </div>
     }
+
+}
+else
+{
+    <div>
+        Yorum yapmak için giriş yapın.
+    </div>
 
 }

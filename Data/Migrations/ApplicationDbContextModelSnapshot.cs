@@ -437,6 +437,9 @@ namespace Web_Prog_Proje.Data.Migrations
                     b.Property<string>("Yorum")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("temp")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("KitapId");

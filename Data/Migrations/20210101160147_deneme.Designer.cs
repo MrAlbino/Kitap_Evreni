@@ -10,8 +10,8 @@ using Web_Prog_Proje.Data;
 namespace Web_Prog_Proje.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201231235311_comments1")]
-    partial class comments1
+    [Migration("20210101160147_deneme")]
+    partial class deneme
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -427,7 +427,7 @@ namespace Web_Prog_Proje.Data.Migrations
                     b.Property<string>("Ad")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("KitapId")
+                    b.Property<int>("KitapId")
                         .HasColumnType("int");
 
                     b.Property<string>("Mail")
@@ -437,6 +437,9 @@ namespace Web_Prog_Proje.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Yorum")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("temp")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -556,7 +559,9 @@ namespace Web_Prog_Proje.Data.Migrations
                 {
                     b.HasOne("Web_Prog_Proje.Models.Kitap", "Kitap")
                         .WithMany("Yorumlar")
-                        .HasForeignKey("KitapId");
+                        .HasForeignKey("KitapId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -80,3 +80,11 @@ body {
     box-shadow: 0 1rem 3rem rgba(0, 0, 0, 1.2) !important;
     transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
+.special-input {
+    margin-right: 16px/2;
+    box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #FFF;
+    width: 100%;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+    -webkit-appearance: none;
+}

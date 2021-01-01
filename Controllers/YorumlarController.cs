@@ -151,7 +151,7 @@ namespace Web_Prog_Proje.Controllers
             var yorumlar = await _context.Yorumlar.FindAsync(id);
             _context.Yorumlar.Remove(yorumlar);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Details","Kitap",new { id=yorumlar.KitapId});
         }
 
         private bool YorumlarExists(int id)
