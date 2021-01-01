@@ -7,13 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Web_Prog_Proje.Data;
 using Web_Prog_Proje.Models;
-
+using Microsoft.AspNetCore.Http.Extensions;
 namespace Web_Prog_Proje.Controllers
 {
     public class KitapController : Controller
     {
         private readonly ApplicationDbContext _context;
-
         public KitapController(ApplicationDbContext context)
         {
             _context = context;
@@ -30,6 +29,14 @@ namespace Web_Prog_Proje.Controllers
             var applicationDbContext = _context.Kitap.Include(k => k.Dil).Include(k => k.Kategori);
             return View(await applicationDbContext.ToListAsync());
         }
+        
+        [HttpPost]
+        public ActionResult YorumYap(Yorumlar y)
+        {
+            _context.Yorumlar.Add(y);
+            _context.SaveChanges();
+            return RedirectToAction("Details",new { id = y.KitapId });
+        }
         // GET: Kitap/Details/5
         KitapYorum kitap_yorum = new KitapYorum();
         public async Task<IActionResult> Details(int? id)
@@ -38,7 +45,6 @@ namespace Web_Prog_Proje.Controllers
             {
                 return NotFound();
             }
-
             var kitap = await _context.Kitap
                 .Include(k => k.Dil)
                 .Include(k => k.Kategori)

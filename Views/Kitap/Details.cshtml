@@ -67,8 +67,8 @@
 
         </dl>
     </div>
-
 </div>
+
 @foreach (var item in Model.yorum)
 {
     <div>
@@ -85,6 +85,33 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
+    var currentUser = UserManager.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="YorumYap" asp-controller="Kitap">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <input name="Ad" class="form-control" value="@currentUser.Ad" type="hidden" />
+                </div>
+                <div class="form-group">
+                    <input name="Soyad" class="form-control" value="@currentUser.Soyad" type="hidden"/>
+                </div>
+                <div class="form-group">
+                    <input name="Mail" class="form-control" value="@currentUser.Email" type="hidden" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Mesaj</label>
+                    <input name="Yorum" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input name="KitapId" class="form-control" value="@Model.kitap.Id" type="hidden" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Yolla" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
     var giris_yapan_kullanici = await UserManager.GetUserAsync(User);
     var kullanici_rol = await UserManager.GetRolesAsync(giris_yapan_kullanici);
 
