@@ -21,6 +21,7 @@ namespace Web_Prog_Proje.Data
         public DbSet<Yazar> Yazar { get; set; }
         public DbSet<Karakter> Karakter { get; set; }
         public DbSet<Ulke> Ulke { get; set; }
+        public DbSet<Yorumlar> Yorumlar { get; set; }
 
     }
 }

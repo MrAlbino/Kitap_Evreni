@@ -31,6 +31,7 @@ namespace Web_Prog_Proje.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
         // GET: Kitap/Details/5
+        KitapYorum kitap_yorum = new KitapYorum();
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -44,12 +45,14 @@ namespace Web_Prog_Proje.Controllers
                 .FirstOrDefaultAsync(m => m.Id == id);
             //ViewData["Kategori"] = _context.Kategori.Where(i => i.Id == kitap.KategoriId).Select(p=>p.KategoriAd).FirstOrDefault();
             //ViewData["Dil"] = _context.Dil.Where(i => i.Id == kitap.DilId).Select(p=>p.DilId).FirstOrDefault();
+            kitap_yorum.kitap = _context.Kitap.Where(x => x.Id == id).FirstOrDefault();
+            kitap_yorum.yorum = _context.Yorumlar.Where(x => x.KitapId == id).ToList();
             if (kitap == null)
             {
                 return NotFound();
             }
 
-            return View(kitap);
+            return View(kitap_yorum);
         }
 
         // GET: Kitap/Create

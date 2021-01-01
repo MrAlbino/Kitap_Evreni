@@ -26,5 +26,7 @@ namespace Web_Prog_Proje.Models
         public Kategori Kategori { get; set; }      
         public int? DilId { get; set; }
         public Dil Dil { get; set; }
+        public ICollection<Yorumlar> Yorumlar { get; set; }
+
     }
 }

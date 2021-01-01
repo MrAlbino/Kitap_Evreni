@@ -1,4 +1,4 @@
-﻿@model Web_Prog_Proje.Models.Kitap
+﻿@model Web_Prog_Proje.Models.KitapYorum
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<Kullanici> SignInManager
 @inject UserManager<Kullanici> UserManager
@@ -11,64 +11,78 @@
 <div class="row">
     <hr />
     <div class="col-2">
-        <img class="rounded img-fluid" src="@Html.DisplayFor(model => model.Resim)" alt="">
+        <img class="rounded img-fluid" src="@Html.DisplayFor(model => model.kitap.Resim)" alt="">
 
     </div>
     <div class="col-10">
         <dl class="row">
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.KitapAd)
+                @Html.DisplayNameFor(model => model.kitap.KitapAd)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.KitapAd)
+                @Html.DisplayFor(model => model.kitap.KitapAd)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.SayfaSayisi)
+                @Html.DisplayNameFor(model => model.kitap.SayfaSayisi)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.SayfaSayisi)
+                @Html.DisplayFor(model => model.kitap.SayfaSayisi)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.BasimYili)
+                @Html.DisplayNameFor(model => model.kitap.BasimYili)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.BasimYili)
+                @Html.DisplayFor(model => model.kitap.BasimYili)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Konu)
+                @Html.DisplayNameFor(model => model.kitap.Konu)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Konu)
+                @Html.DisplayFor(model => model.kitap.Konu)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Resim)
+                @Html.DisplayNameFor(model => model.kitap.Resim)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Resim)
+                @Html.DisplayFor(model => model.kitap.Resim)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.ArkaplanResim)
+                @Html.DisplayNameFor(model => model.kitap.ArkaplanResim)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.ArkaplanResim)
+                @Html.DisplayFor(model => model.kitap.ArkaplanResim)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Kategori)
+                @Html.DisplayNameFor(model => model.kitap.Kategori)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Kategori.KategoriAd)
+                @Html.DisplayFor(model => model.kitap.Kategori.KategoriAd)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Dil)
+                @Html.DisplayNameFor(model => model.kitap.Dil)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Dil.DilId)
+                @Html.DisplayFor(model => model.kitap.Dil.DilId)
             </dd>
 
         </dl>
     </div>
 
 </div>
+@foreach (var item in Model.yorum)
+{
+    <div>
+        <ul class="comment-list">
+            <li>
+                <div>
+                    <p>@item.Ad @item.Soyad: @item.Yorum</p>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+}
+
 @if (SignInManager.IsSignedIn(User))
 {
     var giris_yapan_kullanici = await UserManager.GetUserAsync(User);
@@ -77,7 +91,7 @@
     if (kullanici_rol.FirstOrDefault().Equals("Admin"))
     {
         <div>
-            <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+            <a asp-action="Edit" asp-route-id="@Model.kitap.Id">Edit</a> |
             <a asp-action="Index">Back to List</a>
         </div>
     }

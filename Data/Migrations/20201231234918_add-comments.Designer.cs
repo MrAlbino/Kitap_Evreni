@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Web_Prog_Proje.Data;
 
 namespace Web_Prog_Proje.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201231234918_add-comments")]
+    partial class addcomments
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -425,7 +427,7 @@ namespace Web_Prog_Proje.Data.Migrations
                     b.Property<string>("Ad")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("KitapId")
+                    b.Property<int?>("KitapId")
                         .HasColumnType("int");
 
                     b.Property<string>("Mail")
@@ -554,9 +556,7 @@ namespace Web_Prog_Proje.Data.Migrations
                 {
                     b.HasOne("Web_Prog_Proje.Models.Kitap", "Kitap")
                         .WithMany("Yorumlar")
-                        .HasForeignKey("KitapId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("KitapId");
                 });
 #pragma warning restore 612, 618
         }
