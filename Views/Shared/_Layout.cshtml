@@ -1,6 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<Kullanici> SignInManager
 @inject UserManager<Kullanici> UserManager
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +20,7 @@
 
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary fixed-top">
             <div class="container">
-                <a class="navbar-brand" asp-action="Index" asp-controller="Home">Kitap Evreni</a>
+                <a class="navbar-brand" asp-action="Index" asp-controller="Home">@localizer["Baslik"]</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -29,7 +31,7 @@
 
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-action="Index1" asp-controller="Kitap">Kitaplar</a>
+                            <a class="nav-link" asp-action="Index1" asp-controller="Kitap">@localizer["Books"]</a>
                         </li>
                         @if (SignInManager.IsSignedIn(User))
                         {
@@ -38,7 +40,7 @@
 
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Hesap
+                                    @localizer["Hesap"]
                                 </a>
                                 <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
 
@@ -74,7 +76,7 @@
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Giriş Yap</a>
+                                <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">@localizer["Giris"]</a>
                             </li>
 
                         }
