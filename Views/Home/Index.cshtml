@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Web_Prog_Proje.Models.Kitap>
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@model IEnumerable<Web_Prog_Proje.Models.Kitap>
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -45,7 +46,7 @@
 
 <div class="container">
 
-    <h1 class="my-4 text-center">Son Eklenenler</h1>
+    <h1 class="my-4 text-center">@localizer["SonEklenen"]</h1>
 
     <!-- Marketing Icons Section -->
     <div class="row">
@@ -58,7 +59,7 @@
                         <p class="card-text">@item.Konu</p>
                     </div>
                     <div class="card-footer">
-                        <a asp-controller="Kitap" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary bg-info">İncele</a>
+                        <a asp-controller="Kitap" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary bg-info">@localizer["Incele"]</a>
                     </div>
                 </div>
             </div>
