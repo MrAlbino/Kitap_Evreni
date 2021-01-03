@@ -13,3 +13,10 @@ her şeyin kontrolüne erişim sağlanmaktadır.
 
 Sitenin frontEnd kısmında genellikle box-shadow kullanılıyor .Görsel manada projemizi en şık şekilde 
 sunabilmek için hover fonksiyonları kullanılıyor.
+
+Projemizde yaptığımız kitap ekleme, yorum ekleme gibi işlemler tamamen dinamik olarak 
+yeni eklenen verilere göre düzenlenmektedir. Projemizde code-first yaklaşımı kullanılmıştır.
+
+Admin ve User olarak 2 ayrı rol bulunuyor. Kullanıcı kaydı yaptığınızda otomatik olarak user rolüne
+atanıyorsunuz. Üye olan kullanıcılar kitapları inceleyebiliyor başka kullanıcıların attığı yorumları okuyabiliyor,
+aynı zamanda okudukları kitaplara kendileri de yorum atabiliyorlar.
