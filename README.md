@@ -10,3 +10,6 @@ kitaplar hakkında başka insanların fikirlerinden faydalanabileceklerdir.
 Sitede kullandığımız admin paneli de oldukça kullanışlı olmakla beraber, istenmeyen türde
 yorumları düzenleyip silme gibi panellere de sahiptir. Kısacası admin panelinde site ile ilgili
 her şeyin kontrolüne erişim sağlanmaktadır.
+
+Sitenin frontEnd kısmında genellikle box-shadow kullanılıyor .Görsel manada projemizi en şık şekilde 
+sunabilmek için hover fonksiyonları kullanılıyor.
